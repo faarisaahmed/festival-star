@@ -14,3 +14,26 @@ logs/
 *.mp4
 __pycache__/
 .DS_Store
+# Audio assets are NOT distributed - audio/fetch_assets.sh downloads them from their sources
+audio/vpo/
+audio/piano/
+audio/sf2/
+audio/tools/sfizz/
+audio/cries/*
+!audio/cries/extra/
+audio/cries/extra/*
+!audio/cries/extra/INDEX.md
+audio/sfx/raw/
+audio/sfx/out/
+audio/music/midi/
+audio/music/wav/
+audio/final/
+audio/ref/
+*.wav
+*.ogg
+*.mp3
+*.flac
+*.sf2
+*.mid
+*.mid.last
+*.tar.xz

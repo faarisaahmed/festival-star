@@ -1,6 +1,6 @@
 # The Festival Star
 
-A 5-minute, fully procedural 3D Pokémon short film, built and rendered with Python scripts in Blender. The film has no people and no sound.
+A 5-minute, fully procedural 3D Pokémon short film, built and rendered with Python scripts in Blender. The film has no people. Its soundtrack is also generated from code: an original orchestral score with Pokémon motifs, plus effects, ambience and the Pokémon's voices (see [Sound](#sound)).
 
 Everything is generated from code: the island, trees and weather, the lighting for each time of day, the character animation, the effects, the camera work and the final edit. **This repo contains only that code.** It includes no game assets (see [Getting the models](#1-getting-the-models)).
 
@@ -93,6 +93,19 @@ python3 scripts/assemble.py              # -> The_Festival_Star.mp4 (with fades 
 ```
 
 The final render is 1920×1080 in EEVEE, with ray-traced reflections, depth of field and motion blur. That takes about 10–18 seconds per frame on an M1, so roughly 24–36 hours for all 7,200 frames. On a Mac, run `caffeinate -dimsu -w <pid>` so the machine doesn't sleep partway through. For a quicker test, lower `FINAL_RES` or the `samples` value in `render.py`.
+
+## Sound
+
+The soundtrack is added after the render, so it never needs the picture re-rendered. The audio code is in `audio/`;
+the samples, sound effects and voices aren't in the repo. `audio/fetch_assets.sh` downloads them from their original
+sources (about 3.2 GB). Full details and licences are in [`audio/README.md`](audio/README.md).
+
+```bash
+audio/fetch_assets.sh                                               # once
+(cd audio/music && python3 score.py midi && python3 mix_music.py)   # the score (~13 min)
+(cd audio/sfx && python3 sfx.py)                                     # effects, ambience, voices
+python3 audio/master.py                                              # -> The_Festival_Star_with_sound.mp4
+```
 
 ## Making your own shots
 
